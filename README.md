@@ -1,11 +1,9 @@
-# Active Record Associations Introduction: Playlister
+# Associations and Migrations
 
-## Objectives
+## Learning Goals
 
-1. Understand how and why Active Record implements associations between models.
-2. Use Active Record migrations and methods to build out a domain model that
-   associates classes via the has-many/belongs-to *and* the many-to-many (or
-   has-many-through) relationships.
+- Understand how and why Active Record implements associations between models.
+- Use Active Record migrations and methods to build out a domain model that associates classes via the has-many/belongs-to *and* the many-to-many (or has-many-through) relationships.
 
 ## What are Active Record Associations?
 
@@ -80,9 +78,21 @@ A song will belong to an artist *and* belong to a genre. Before we worry about
 the migration that will implement this in our songs table, let's think about
 what that table will look like:
 
-|id |name        |artist_id |genre_id |
-|---|------------|----------|---------|
-|2  |Shake It Off|1         |1        |
+<table border="1" cellpadding="4" cellspacing="0">
+  <tr>
+    <th>id</th>
+    <th>name</th>
+    <th>artist_id</th>
+    <th>genre_id</th>
+  </tr>
+  
+  <tr>
+    <td>2</td>
+    <td>Shake It Off</td>
+    <td>1</td>
+    <td>1</td>
+  </tr>
+</table>
 
 We can see that the songs table will have an `artist_id` column and a `genre_id`
 column. We will give a given song an `artist_id` value of the artist it belongs
@@ -119,9 +129,17 @@ many-to-many relationship.
 
 Let's take a look at what our `artists` table will need to look like:
 
-|id |name         |
-|---|-------------|
-|1  |Taylor Swift |
+<table border="1" cellpadding="4" cellspacing="0">
+  <tr>
+    <th>id</th>
+    <th>name</th>
+  </tr>
+  
+  <tr>
+    <td>1</td>
+    <td>Taylor Swift</td>
+  </tr>
+</table>
 
 Our artists table just needs a `name` column. Let's write the migration. In
 `db/migrate/01_create_artists.rb`:
@@ -144,9 +162,17 @@ to in a bit.
 
 Let's take a look at what our genres table will need to look like:
 
-|id |name |
-|---|-----|
-|1  |pop  |
+<table border="1" cellpadding="4" cellspacing="0">
+  <tr>
+    <th>id</th>
+    <th>name</th>
+  </tr>
+  
+  <tr>
+    <td>1</td>
+    <td>pop</td>
+  </tr>
+</table>
 
 Let's write our migration. In `db/migrate/02_create_genres.rb`:
 
